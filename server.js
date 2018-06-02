@@ -1,6 +1,7 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
+const port = process.env.PORT || 3000; // Setting this up for heroku. If not set , default to 3000
 
 var app = express();
 
@@ -17,12 +18,12 @@ console.log('Unable to access file to add log');
 next();
 })
 
-app.use((req,res,next) => {
-  res.render('maintenance.hbs',{
-    pageTitle: 'Home Page',
-    // currentYear : new Date().getFullYear()  // Commenting this out since function is defined as helper now.
-  })
-  })
+// app.use((req,res,next) => {
+//   res.render('maintenance.hbs',{
+//     pageTitle: 'Home Page',
+//     // currentYear : new Date().getFullYear()  // Commenting this out since function is defined as helper now.
+//   })
+// })// this is used to set a maintenance message. Note the sequence in app.use wherein it ends up rendering the view , stopping chain of movement ahead
 
 app.use(express.static(__dirname+'/public'));//setting static contents directory. app.use is registering a middleware
 
@@ -87,6 +88,6 @@ app.get('/website',(req,res)=>{
   res.send('Hello express! This is my website path');
 });
 
-app.listen(3000, ()=> {
-  console.log('Server is up on port 3000');
+app.listen(port, ()=> {
+  console.log('Server is up on port '+port);
 });
