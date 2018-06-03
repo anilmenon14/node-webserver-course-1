@@ -75,6 +75,14 @@ app.get('/about',(req,res)=>{
     // currentYear : new Date().getFullYear()  // Commenting this out since function is defined as helper now.
   });// HBS style
 });
+
+app.get('/portfolio',(req,res)=>{
+  res.render('portfolio.hbs',{
+    pageTitle: 'Portfolio',
+    // currentYear : new Date().getFullYear()  // Commenting this out since function is defined as helper now.
+  });// HBS style
+});
+
 app.get('/bad',(req,res)=>{
   res.send({
       errorMessage: 'Unable to handle request'
